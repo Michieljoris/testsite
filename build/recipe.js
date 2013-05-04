@@ -1,5 +1,4 @@
 /*global */
-
 var mainMenuTree = [
     // { label: 'Home', icon: '', route: 'home'
     //    // sub: [
@@ -7,15 +6,6 @@ var mainMenuTree = [
     //    //     ]
     // }
 ];
-/*
-The wording for the four rolling images on the home page are:
-1. Early Childhood Education and Care training
- 
-2. First Door mentoring inspires focused students
- 
-3. Innovative resources to bridge the gap between theory and practice
-4. Interactive professional development connecting educators to the National Quality Framework
-*/
 
 var slides =  [
     // { url: "images/slides/home_page_Early_Childhood_Education_and_Care_training.jpg"
@@ -26,21 +16,20 @@ var slides =  [
 
 var exports = {
     verbose: true
-    ,monitor: true
     
     ,prettyPrintHtml: false
     // ,tagIdPostfix: '__' //can be overridden per template
     ,paths: {
-        root: '/home/michieljoris/www/personalinfo/'
+        root: process.cwd()
         //relative to this root:
         ,partials: 'build/'  //can be overridden per template
-        ,out:'built' 
+        ,out:'www/built' //can be overridden per template with pathout
         ,js: 'js'
     }
-    ,routes : [
-        ['guide', '/built/guideView.html'],
-        ['template', '/built/guideTemplate.html', 'templateCntl']
-    ]
+    // ,routes : [
+    //     ['guide', '/built/guideView.html'],
+    //     ['template', '/built/guideTemplate.html', 'templateCntl']
+    // ]
     
     //Every partial generates a string. How the partial is generated
     //depends on its type. Each type can define more than one partial
@@ -51,8 +40,9 @@ var exports = {
     //to generate a string to save to the file defined in 'out'.
     ,partials: {
         ids: {
-            title: '<title>A Document of Personal Information</title>'
+            title: '<title>Scaffold</title>'
             ,skewer:'<script src="http://localhost:9090/skewer"></script>'
+            ,hello_world: '<h2>Hello world. Build on this scaffold!!!</h2>'
         }
         ,metaBlock : {
             id: 'meta',
@@ -68,7 +58,7 @@ var exports = {
                 ,'bootstrap-responsive'
                 ,'jquery-ui-1.10.2.custom'
                 ,'angular-ui'
-                ,'main2'
+                ,'main'
             ]
             ,path: 'css/'
         }
@@ -80,21 +70,24 @@ var exports = {
                 path: 'js/'
             },
             {
-                id: 'myJsBlock',
+                id: 'vendorJsBlock',
                 files: [
                     'jquery-1.9.1.min.js'
-                    ,'jquery-ui-1.10.2.custom.min'
+                    // ,'jquery-ui-1.10.2.custom.min'
                     ,'bootstrap'
                     ,'angular.min'
                     ,'angular-ui'
                     ,'ui-bootstrap-tpls-0.2.0'
                     ,'modernizr'
-                    // ,'tinymce/js/tinymce/jquery.tinymce.min'
-                    ,'myangular'
-                    ,'templateCntl'
-                    ,'myjs'
-                    ,'router'
+                    // ,'router'
                     
+                ],
+                path: 'thirdpartyjs/'
+            }
+            ,{
+                id: 'myJsBlock',
+                files: [
+                    'angular'
                 ],
                 path: 'js/'
             }
@@ -111,25 +104,24 @@ var exports = {
             //     },
         ]
         ,template: [
-            { src: 'views/guide.html' 
-              ,tagIdPostfix: '--' //can be overridden per template
-              ,out: 'guideView.html'
-              ,mapping: {
-                  menu: 'html/docmenu',
-                  doc: 'markdown/doc.md'
-              }
-            }
-            ,{ src: 'views/template.html' 
-              ,tagIdPostfix: '--' //can be overridden per template
-              ,out: 'guideTemplate.html'
-              ,mapping: {
-                  // menu: 'html/docmenu',
-                  // doc: 'markdown/doc.md'
-              }
-            }
+            // { src: 'views/guide.html' 
+            //   ,tagIdPostfix: '--' //can be overridden per template
+            //   ,out: 'guideView.html'
+            //   ,mapping: {
+            //       menu: 'html/docmenu',
+            //       doc: 'markdown/doc.md'
+            //   }
+            // }
+            // ,{ src: 'views/template.html' 
+            //   ,tagIdPostfix: '--' //can be overridden per template
+            //   ,out: 'guideTemplate.html'
+            //   ,mapping: {
+            //       // menu: 'html/docmenu',
+            //       // doc: 'markdown/doc.md'
+            //   }
+            // },
             //Main layout
-            ,{// id: 'page' 
-                pathOut: ''
+            {   pathOut: 'www/'
                 ,out: 'index.html' //optional, relative to root
                 ,src: 'html/basicPage.html'
                 //Maps tag ids to partial ids. Tag ids have to be
@@ -143,20 +135,14 @@ var exports = {
                            // ,'_linkBlock'
                           ],
                     wrapper: [
-                        // 'html/doc.html'
-                        'html/body'
-                        // 'html/testui'
-                        // 'html/scrollspy'
+                        'hello_world'
+                        // ,'html/body'
+                        ,'vendorJsBlock'
                         ,'myJsBlock'
-                        // ,'_scriptBlock'
                     ]
                 }
             }
             
         ] 
-        
     }
 };
-
-
-

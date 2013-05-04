@@ -1,11 +1,11 @@
 {
-    "name": "firstdoor",
+    "name": "scaffold",
     "version": "0.1.0",
     "author": "Michiel van Oosten",
-    "description": "Website for Greendoor business",
+    "description": "Scaffold",
     "repository": {
 	"type": "git",
-	"url": "git://github.com/michieljoris/firstdoor.git"
+	"url": "git://github.com/michieljoris/scaffold.git"
     },
     "scripts": {
 	"start": "node ./server/server.js"
