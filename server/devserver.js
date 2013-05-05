@@ -18,8 +18,8 @@ var options = {
     //     { "prefix": "iris",
     //       "target": "https://michieljoris.iriscouch.com"}
 // ]
-    ,"dir": false
-    ,"index": true
+    ,"dir": true
+    ,"index": false
     ,"silent": false
     // ,"port": 7090
     ,postHandlers: {
