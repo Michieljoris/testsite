@@ -42,22 +42,32 @@ var exports = {
         ids: {
             title: '<title>Scaffold</title>'
             ,skewer:'<script src="http://localhost:9090/skewer"></script>'
+            ,recaptcha: '<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>'
             ,hello_world: '<h2>Hello world. Build on this scaffold!!!</h2>'
         }
         ,metaBlock : {
             id: 'meta',
-            tags: [ { charset:'utf-8' },
-                    { name: "viewport"
-                      ,content: "width=device-width, initial-scale=1, maximum-scale=1"
-                    } ]
+            tags: [ { charset:'utf-8' }
+                    ,{ content:"IE=edge,chrome=1",
+                       "http-equiv":"X-UA-Compatible"
+                    }
+                    ,{ content:"",
+                       name:"description"
+                    }
+                    ,{ name: "viewport"
+                      ,content: "width=device-width, initial-scale=1, maximum-scale=1"}
+                  ]
         }
         ,linkBlock:  {
             id: 'myLinkBlock',
             files:  [
+                'normalize',
+                'h5bp',
                 'bootstrap'
                 ,'bootstrap-responsive'
                 ,'jquery-ui-1.10.2.custom'
                 ,'angular-ui'
+                ,'checkboxes'
                 ,'main'
             ]
             ,path: 'css/'
@@ -73,6 +83,7 @@ var exports = {
                 id: 'vendorJsBlock',
                 files: [
                     'jquery-1.9.1.min.js'
+                    ,'noconsole'
                     // ,'jquery-ui-1.10.2.custom.min'
                     ,'bootstrap'
                     ,'angular.min'
@@ -124,6 +135,7 @@ var exports = {
             {   pathOut: 'www/'
                 ,out: 'index.html' //optional, relative to root
                 ,src: 'html/basicPage.html'
+               ,tagIdPostfix: '' //can be overridden per template
                 //Maps tag ids to partial ids. Tag ids have to be
                 //postfixed with two dashes in the template. Partials
                 //with an extension will be loaded from the partials
@@ -134,12 +146,10 @@ var exports = {
                     head: ['title', 'meta', 'html/ieshim',  'skewer', 'headJsBlock', 'myLinkBlock'
                            // ,'_linkBlock'
                           ],
-                    wrapper: [
-                        'hello_world'
-                        // ,'html/body'
-                        ,'vendorJsBlock'
-                        ,'myJsBlock'
-                    ]
+                   "ng:app": ['html/body.html', 'vendorJsBlock', 'myJsBlock'
+                              // 'recaptcha',
+                               // 'html/google_analytics.html'
+                             ]
                 }
             }
             
