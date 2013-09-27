@@ -37,6 +37,9 @@ var options = {
         // "/dropbox_authorize": dropbox_authorize,
         // "/dropbox_connect": dropbox_connect
     }
+    ,sessions: {
+        expires: 30*24*60*60  //one month
+    }
 };
 
 server.go(options);

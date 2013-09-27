@@ -6,6 +6,7 @@ var https = require('https');
 var querystring = require('querystring');
 var VOW = require('./vow').VOW;
 var audience = process.env.AUDIENCE;
+var authorizedEmails = require('./authorized_emails').list;
 
 // var server = require('nano')('http://localhost:5984');
 // var db = server.use('personalinfo');
@@ -98,17 +99,9 @@ function isValid(data, session) {
     }
     return vow.promise;
 }
-
+console.log('Authorized emails', authorizedEmails);
 function authorizeUser(email) {
     // var vow = VOW.make();
-    var authorizedEmails = [
-        'michieljoris@gmail.com',
-        'jujusilkie@gmail.com',
-        // 'michieljoris@justemail.net',
-        'julie.vanoosten@pavetheway.org.au',
-        'julie.vanoosten@mamre.org.au'
-        ,'greenglass@justemail.net'
-    ]; 
     console.log('Checking user\'s email: ' + email);
     try {
     if (authorizedEmails.indexOf(email) !== -1) {

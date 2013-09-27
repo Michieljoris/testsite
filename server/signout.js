@@ -4,7 +4,7 @@
 
 exports.handlePost = function(req, res) {
     console.log('Signout is handling post!!');
-    console.log(req.headers['x-forwarded-for']);
+    // console.log(req.headers['x-forwarded-for']);
     
     res.writeHead(200, "OK", {'Content-Type': 'text/html'});
     

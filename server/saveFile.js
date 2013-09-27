@@ -3,6 +3,7 @@
 /*jshint maxparams:7 maxcomplexity:7 maxlen:150 devel:true newcap:false*/ 
 
 var VOW = require('./vow').VOW;
+var htmlBuilder = require('html-builder');
 
 function sendResponse(res, err) {
     var headers = {'Content-Type': 'text/html'};
@@ -21,7 +22,7 @@ function sendResponse(res, err) {
 
 function getData(req) {
     var vow = VOW.make();
-    
+    console.log('in getData');
     var data = '';
     req.on('data', function(chunk) {
         console.log("received data!! And the chunk is:", chunk);
@@ -46,11 +47,11 @@ function saveFile(data, req) {
     
     try {
         // data = JSON.parse(data);
-        console.log('data received is:', data);
+        // console.log('data received is:', data);
         var fs = require('fs');
         // console.log('about to write file');
         var path = req.url.query && req.url.query.path;
-        fs.writeFile(process.cwd() + '/www/' + path, data, function(err) {
+        fs.writeFile(process.cwd() + '/build/' + path, data, function(err) {
             if(err) {
                 console.log('ERROR!!!', err);
                 vow['break']('Error trying to save file ' + err.toString());
@@ -70,16 +71,40 @@ function saveFile(data, req) {
 
 exports.handlePost = function(req, res) {
     console.log("saveFile is handling post!!");
+    // req.session.get()
+    //     .when(
+    //         function(session) {
+    //             console.log('session data is: ' , session);
+    //             if (!session.data || !session.data.verified) return VOW.broken('Not authorized.');
+    //             return getData(req);
+    //         })
+    //     .when(
+    //         function(data) {
+    //             console.log('data received', data);
+    //             return saveFile(data, req);
+    //         })
+    //     .when(
+    //         function() {
+    //             console.log('file saved');
+    //             console.log('rebuilding site and sending response');
+    //             htmlBuilder.build();
+    //             sendResponse(res);
+    //         },
+    //         function(err) {
+    //             console.log('error', err);
+    //             sendResponse(res, err);
+    //         });
     var data;
     getData(req)
         .when(
             function(someData) {
                 data = someData;
+                console.log('data received', data);
                 return req.session.get();
             })
         .when(function(session){
             console.log('session data is: ' , session);
-            if (session.data && !session.data.verified) return VOW.broken('Not authorized.');
+            if (!session.data || !session.data.verified) return VOW.broken('Not authorized.');
             return VOW.kept();
         })
         .when(
@@ -88,6 +113,9 @@ exports.handlePost = function(req, res) {
             })
         .when(
             function() {
+                console.log('file saved');
+                console.log('rebuilding site and sending response');
+                htmlBuilder.build();
                 sendResponse(res);
             },
             function(err) {

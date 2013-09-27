@@ -12,18 +12,21 @@
        <a ng-hide="signedIn" href="#" class="persona-button blue" ng-click="signin($event)"><span>Sign in</span></a>
        <a ng-show="signedIn" href="#" class="persona-button blue" ng-click="signout($event)"><span>Sign out</span></a>
      </div>
+     Signed in user: {{signedIn}}
 
      <p></p>
 
      <button class="btn btn-primary"  type="button" ng-click="saveEditable()">Save editable</button>
+     <button class="btn btn-primary"  type="button" ng-click="undoEditable()">Undo editable</button>
      <button class="btn btn-primary"  type="button" ng-click="printEditable()">Print editable</button>
      <button class="btn btn-primary"  type="button" ng-click="toggleEditable()">Toggle editable</button>
      Editable? {{contentEditable}}
-     <div id="editable" contenteditable="{{contentEditable}}">
-       <h1>Inline Editing in Action!</h1>
-       <p>The div element that contains this text is now editable.
+     <div id="test--" contenteditable="{{contentEditable}}">
      </div>
 
+     <div id="test2--" contenteditable="{{contentEditable}}">
+       And this is div two.
+     </div>
      <p></p>
 
      <div class="well">
@@ -35,3 +38,4 @@
 
      </div>
    </div>
+  <!-- text  -->

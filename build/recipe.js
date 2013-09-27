@@ -42,7 +42,7 @@ var exports = {
         ids: {
             title: '<title>Test Site</title>'
             ,skewer:'<script src="http://localhost:9090/skewer"></script>'
-            ,persona:'<script src="https://login.persona.org/include.js"></script>'
+            // ,persona:'<script src="https://login.persona.org/include.js"></script>'
             // ,recaptcha: '<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>'
         }
         ,metaBlock : {
@@ -103,6 +103,7 @@ var exports = {
                 files: [
                     'main.js'
                     ,'router.js'
+                    ,'cookie.js'
                     ,'persona'
                 ],
                 path: 'js/'
@@ -143,7 +144,18 @@ var exports = {
                   // menu: 'html/docmenu',
                   // doc: 'markdown/doc.md'
               }
-            },
+            }
+            
+            ,{ id: 'body',
+               src: 'html/body.html' 
+               ,tagIdPostfix: '--' //can be overridden per template
+               // ,out: 'page2.html'
+               ,mapping: {
+                   test: 'editable/test.html'
+                   // menu: 'html/docmenu',
+                   // doc: 'markdown/doc.md'
+               }
+             },
             //Main layout
             {   pathOut: 'www/'
                 ,out: 'index.html' //optional, relative to root
@@ -160,7 +172,7 @@ var exports = {
                            // ,'persona'
                            // ,'_linkBlock'
                           ],
-                   "ng:app": ['html/body.html', 'vendorJsBlock', 'myJsBlock'
+                   "ng:app": ['body', 'vendorJsBlock', 'myJsBlock'
                               // 'recaptcha',
                                // 'html/google_analytics.html'
                              ]
