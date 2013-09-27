@@ -3,13 +3,16 @@
 /*jshint maxparams:7 maxcomplexity:7 maxlen:150 devel:true newcap:false*/ 
 
 var server = require('bb-server')
-    ,testSendMail = require("./testSendMail.js")
-    ,sync = require("./sync.js")
-    ,dropbox_authorize = require("./dropbox_authorize.js")
-    ,dropbox_connect = require("./dropbox_connect.js")
-    // save = require("./save")
+,saveFile = require("./saveFile")
+,signin = require("./signin.js")
+,signout = require("./signout.js")
+// ,testSendMail = require("./testSendMail.js")
+// ,sync = require("./sync.js")
+// ,dropbox_authorize = require("./dropbox_authorize.js")
+// ,dropbox_connect = require("./dropbox_connect.js")
+// save = require("./save")
 ;
- 
+
 var options = { 
     root: 'www'
     // "forward": [
@@ -24,12 +27,15 @@ var options = {
     // ,"port": 7090
     ,postHandlers: {
         // "/" : save
-        "/contactus_form" : testSendMail
+        "/save": saveFile
+        ,"/signin": signin
+        ,"/signout": signout
+        // "/contactus_form" : testSendMail
         }
     ,getHandlers: {
-        "/sync": sync,
-        "/dropbox_authorize": dropbox_authorize,
-        "/dropbox_connect": dropbox_connect
+        // "/sync": sync,
+        // "/dropbox_authorize": dropbox_authorize,
+        // "/dropbox_connect": dropbox_connect
     }
 };
 

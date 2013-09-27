@@ -1,0 +1,52 @@
+* incorporate more it the build process:
+
+** gzip the resources
+** merge js and css and html etc
+  replace all dev versions of css and js of thirdparty with their
+  minified versions
+  minify your own css and js 
+** image compression
+   www.smushit.com/ysmush.it/
+For jpeg files, the quality setting should not need to be more than 70
+*** resizing images:
+Install imagemagick then
+mogrify -resize x450 *.jpg
+to resize all images in dir
+and:
+mogrify -quality 80 *.jpg
+to compress
+** use cdn 
+cloudfront for my own files
+use cdn versions of thirdparty where possible
+   
+** caching flags in headers   
+   
+** make a few pages then have them render with phantomjs
+** sitemap 
+** inline editing of text 
+Add mozilla sessions 
+
+inline x-editable, http://vitalets.github.io/x-editable/demo.html?c=inline
+ckeditor inline http://ckeditor.com/demo#inline
+http://mattduvall.com/grande.js/
+http://sofish.github.io/pen/
+http://hallojs.org/
+https://github.com/daviferreira/medium-editor
+http://www.zenpen.io/
+** serve it from https   
+   
+https://developers.google.com/webmasters/ajax-crawling/docs/specification
+* SEO
+Add meta description <156char, and page title<70char
+Google analytics and webmaster tools
+
+Google offers Google Webmaster Tools, for which an XML Sitemap feed
+can be created and submitted for free to ensure that all pages are
+found, especially pages that are not discoverable by automatically
+following links.
+https://accounts.google.com/ServiceLogin?service=sitemaps&passive=1209600&continue=https%3A%2F%2Fwww.google.com%2Fwebmasters%2Ftools%2F&followup=https%3A%2F%2Fwww.google.com%2Fwebmasters%2Ftools%2F
+
+noindex and nofollow
+
+
+

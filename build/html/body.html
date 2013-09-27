@@ -1,7 +1,37 @@
 <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
 
 
+   <div class="container" ng-controller="mainCntl">
 
-<h3>Hello from the body</h3>
+
+     <h3>Hello from the body</h3> {{test}}
+
+     <div ng-show="mode=='edit'">
+       <a ng-hide="signedIn" href="#" class="persona-button blue" ng-click="signin($event)"><span>Sign in</span></a>
+       <a ng-show="signedIn" href="#" class="persona-button blue" ng-click="signout($event)"><span>Sign out</span></a>
+     </div>
+
+     <p></p>
+
+     <button class="btn btn-primary"  type="button" ng-click="saveEditable()">Save editable</button>
+     <button class="btn btn-primary"  type="button" ng-click="printEditable()">Print editable</button>
+     <button class="btn btn-primary"  type="button" ng-click="toggleEditable()">Toggle editable</button>
+     Editable? {{contentEditable}}
+     <div id="editable" contenteditable="{{contentEditable}}">
+       <h1>Inline Editing in Action!</h1>
+       <p>The div element that contains this text is now editable.
+     </div>
+
+     <p></p>
+
+     <div class="well">
+       <a class=""  href="/">Home</a>
+       <a class=""  href="/#!/page1">Page 1</a>
+       <a class=""  href="/#!/page2">Page 2</a>
+
+       <div class="well ng-view" ></div>
+
+     </div>
+   </div>

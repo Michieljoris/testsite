@@ -1,4 +1,4 @@
-/*global */
+/*global process:false*/
 var mainMenuTree = [
     // { label: 'Home', icon: '', route: 'home'
     //    // sub: [
@@ -24,12 +24,12 @@ var exports = {
         //relative to this root:
         ,partials: 'build/'  //can be overridden per template
         ,out:'www/built' //can be overridden per template with pathout
-        ,js: 'js'
+        ,js: 'www/js'
     }
-    // ,routes : [
-    //     ['guide', '/built/guideView.html'],
-    //     ['template', '/built/guideTemplate.html', 'templateCntl']
-    // ]
+    ,routes : [
+        ['page1', '/built/page1.html', 'page1Cntl'],
+        ['page2', '/built/page2.html', 'page2Cntl']
+    ]
     
     //Every partial generates a string. How the partial is generated
     //depends on its type. Each type can define more than one partial
@@ -40,34 +40,37 @@ var exports = {
     //to generate a string to save to the file defined in 'out'.
     ,partials: {
         ids: {
-            title: '<title>Scaffold</title>'
+            title: '<title>Test Site</title>'
             ,skewer:'<script src="http://localhost:9090/skewer"></script>'
-            ,recaptcha: '<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>'
-            ,hello_world: '<h2>Hello world. Build on this scaffold!!!</h2>'
+            ,persona:'<script src="https://login.persona.org/include.js"></script>'
+            // ,recaptcha: '<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>'
         }
         ,metaBlock : {
             id: 'meta',
             tags: [ { charset:'utf-8' }
                     ,{ content:"IE=edge,chrome=1",
                        "http-equiv":"X-UA-Compatible"
-                    }
-                    ,{ content:"",
+                     }
+                    ,{ content:"This is the description of the test site",
                        name:"description"
-                    }
+                     }
                     ,{ name: "viewport"
-                      ,content: "width=device-width, initial-scale=1, maximum-scale=1"}
+                       ,content: "width=device-width, initial-scale=1.0"
+                    //stops zooming:
+                    // ,content: '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">'
+                  } 
                   ]
         }
         ,linkBlock:  {
             id: 'myLinkBlock',
             files:  [
-                'normalize',
+                // 'normalize', //included with bootstrap3
                 'h5bp',
-                'bootstrap'
-                ,'bootstrap-responsive'
-                ,'jquery-ui-1.10.2.custom'
-                ,'angular-ui'
-                ,'checkboxes'
+                '../bootstrap3/css/bootstrap.css'
+                ,'persona-buttons'
+                // ,'jquery-ui-1.10.2.custom'
+                // ,'angular-ui'
+                // ,'checkboxes'
                 ,'main'
             ]
             ,path: 'css/'
@@ -84,21 +87,23 @@ var exports = {
                 files: [
                     'jquery-1.9.1.min.js'
                     ,'noconsole'
+                    ,'../bootstrap3/js/bootstrap.js'
                     // ,'jquery-ui-1.10.2.custom.min'
-                    ,'bootstrap'
                     ,'angular.min'
-                    ,'angular-ui'
-                    ,'ui-bootstrap-tpls-0.2.0'
-                    ,'modernizr'
-                    // ,'router'
-                    
+                    // ,'angular-ui'
+                    // ,'ui-bootstrap-tpls-0.2.0'
+                    ,'modernizr' 
+                    ,"../ckeditor/ckeditor.js"
+                    ,'persona_include' //to be replaced by include.js from CDN
                 ],
                 path: 'thirdpartyjs/'
             }
             ,{
                 id: 'myJsBlock',
                 files: [
-                    'angular'
+                    'main.js'
+                    ,'router.js'
+                    ,'persona'
                 ],
                 path: 'js/'
             }
@@ -115,22 +120,30 @@ var exports = {
             //     },
         ]
         ,template: [
-            // { src: 'views/guide.html' 
-            //   ,tagIdPostfix: '--' //can be overridden per template
-            //   ,out: 'guideView.html'
-            //   ,mapping: {
-            //       menu: 'html/docmenu',
-            //       doc: 'markdown/doc.md'
-            //   }
-            // }
-            // ,{ src: 'views/template.html' 
-            //   ,tagIdPostfix: '--' //can be overridden per template
-            //   ,out: 'guideTemplate.html'
-            //   ,mapping: {
-            //       // menu: 'html/docmenu',
-            //       // doc: 'markdown/doc.md'
-            //   }
-            // },
+            { src: 'views/home.html' 
+              ,tagIdPostfix: '--' //can be overridden per template
+              ,out: 'home.html'
+              ,mapping: {
+                  // menu: 'html/docmenu',
+                  // doc: 'markdown/doc.md'
+              }
+            }
+            ,{ src: 'views/page1.html' 
+              ,tagIdPostfix: '--' //can be overridden per template
+              ,out: 'page1.html'
+              ,mapping: {
+                  // menu: 'html/docmenu',
+                  // doc: 'markdown/doc.md'
+              }
+            }
+            ,{ src: 'views/page2.html' 
+              ,tagIdPostfix: '--' //can be overridden per template
+              ,out: 'page2.html'
+              ,mapping: {
+                  // menu: 'html/docmenu',
+                  // doc: 'markdown/doc.md'
+              }
+            },
             //Main layout
             {   pathOut: 'www/'
                 ,out: 'index.html' //optional, relative to root
@@ -144,6 +157,7 @@ var exports = {
                 //concatenated before inserted at the tag id element
                 ,mapping: {
                     head: ['title', 'meta', 'html/ieshim',  'skewer', 'headJsBlock', 'myLinkBlock'
+                           // ,'persona'
                            // ,'_linkBlock'
                           ],
                    "ng:app": ['html/body.html', 'vendorJsBlock', 'myJsBlock'
