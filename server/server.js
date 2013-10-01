@@ -32,7 +32,7 @@ var options = {
         ,"/signout": signout
         // "/contactus_form" : testSendMail
         }
-    ,getHandlers: {
+    ,getHandlers:{
         // "/sync": sync,
         // "/dropbox_authorize": dropbox_authorize,
         // "/dropbox_connect": dropbox_connect
