@@ -14,6 +14,8 @@ var slides =  [
     // }
 ];
 
+
+var develop_mode = process.env.NODE_ENV; 
 var exports = {
     verbose: true
     
@@ -23,8 +25,19 @@ var exports = {
         root: process.cwd()
         //relative to this root:
         ,partials: 'build/'  //can be overridden per template
-        ,out:'www/built' //can be overridden per template with pathout
-        ,js: 'www/js'
+        ,www: 'www'
+        //relative to www:
+        ,out:'built' //can be overridden per template with pathout
+        ,js: 'js'
+    }
+    
+    
+    //send msg to url when finished rendering
+    ,refresh: {
+        // enable: develop_mode,
+        enable: true,
+        url: "ws://localhost:8080",
+        msg: "reload"
     }
     ,routes : [
         ['page1', '/built/page1.html', 'page1Cntl'],
@@ -42,7 +55,7 @@ var exports = {
         ids: {
             title: '<title>Test Site</title>'
             ,skewer:'<script src="http://localhost:9090/skewer"></script>'
-            // ,persona:'<script src="https://login.persona.org/include.js"></script>'
+            ,persona:'<script src="https://login.persona.org/include.js"></script>'
             // ,recaptcha: '<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>'
         }
         ,metaBlock : {
@@ -65,13 +78,13 @@ var exports = {
             id: 'myLinkBlock',
             files:  [
                 // 'normalize', //included with bootstrap3
-                'h5bp',
+                'h5bp.css',
                 '../bootstrap3/css/bootstrap.css'
-                ,'persona-buttons'
+                ,'persona-buttons.css'
                 // ,'jquery-ui-1.10.2.custom'
                 // ,'angular-ui'
                 // ,'checkboxes'
-                ,'main'
+                ,'main.css'
             ]
             ,path: 'css/'
         }
@@ -79,6 +92,8 @@ var exports = {
             {
                 id: 'headJsBlock',
                 files: [
+                    
+                    // ,'https://login.persona.org/include.js'
                 ],
                 path: 'js/'
             },
@@ -86,17 +101,17 @@ var exports = {
                 id: 'vendorJsBlock',
                 files: [
                     'jquery-1.9.1.min.js'
-                    ,'noconsole'
+                    ,'noconsole.js'
                     ,'../bootstrap3/js/bootstrap.js'
                     // ,'jquery-ui-1.10.2.custom.min'
-                    ,'angular.min'
+                    ,'angular.min.js'
                     // ,'angular-ui'
                     // ,'ui-bootstrap-tpls-0.2.0'
-                    ,'modernizr' 
+                    ,'modernizr.js' 
                     ,"../ckeditor/ckeditor.js"
-                    ,'persona_include' //to be replaced by include.js from CDN
+                    // ,'persona_include.js' //to be replaced by include.js from CDN
                 ],
-                path: 'thirdpartyjs/'
+                path: 'thirdpartyjs'
             }
             ,{
                 id: 'myJsBlock',
@@ -104,9 +119,9 @@ var exports = {
                     'main.js'
                     ,'router.js'
                     ,'cookie.js'
-                    ,'persona'
+                    ,'persona.js'
                 ],
-                path: 'js/'
+                path: 'js'
             }
         ]
         // ,slideShow: [{ type: 'flex',
@@ -168,11 +183,15 @@ var exports = {
                 //converted to html. Partials in an array will be
                 //concatenated before inserted at the tag id element
                 ,mapping: {
-                    head: ['title', 'meta', 'html/ieshim',  'skewer', 'headJsBlock', 'myLinkBlock'
-                           // ,'persona'
+                    head: ['title', 'meta', 'html/ieshim',  'skewer', 'headJsBlock',
+                           // 'myLinkBlock'
+                           ,'persona'
                            // ,'_linkBlock'
+                           // ,'somescript'
                           ],
-                   "ng:app": ['body', 'vendorJsBlock', 'myJsBlock'
+                   "ng:app": [
+                       // 'body',
+                       //        'vendorJsBlock', 'myJsBlock'
                               // 'recaptcha',
                                // 'html/google_analytics.html'
                              ]

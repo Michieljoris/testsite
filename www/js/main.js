@@ -12,7 +12,7 @@ var myAppModule = angular.module('myApp', ['ngView',
 
 
 var mainCntl = function ($scope, $http) {
-    initPersona($scope, $http)
+    initPersona($scope, $http);
     
     function saveFile(fileName, data) {
         if (!fileName) {
@@ -46,7 +46,7 @@ var mainCntl = function ($scope, $http) {
     $scope.mode = 'edit';
     var partials;
     
-    var regexp = /<!--([^>]*)-->/;
+    var regexp = /<!--partial:([^>]*)-->/;
     $scope.toggleEditable = function() {
         $scope.contentEditable = !$scope.contentEditable;
         if ($scope.contentEditable) {

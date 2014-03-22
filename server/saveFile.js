@@ -2,7 +2,7 @@
 /*jshint strict:false unused:true smarttabs:true eqeqeq:true immed: true undef:true*/
 /*jshint maxparams:7 maxcomplexity:7 maxlen:150 devel:true newcap:false*/ 
 
-var VOW = require('./vow').VOW;
+var VOW = require('dougs_vow');
 var htmlBuilder = require('html-builder');
 
 function sendResponse(res, err) {
@@ -69,7 +69,7 @@ function saveFile(data, req) {
     return vow.promise;
 } 
 
-exports.handlePost = function(req, res) {
+module.exports = function(req, res) {
     console.log("saveFile is handling post!!");
     // req.session.get()
     //     .when(

@@ -1,25 +1,25 @@
 {
     "name": "testsite",
-    "version": "0.1.0",
+    "version": "0.1.0-4",
     "author": "Michiel van Oosten",
     "description": "Test site",
     "repository": {
-	"type": "git",
-	"url": "git://github.com/michieljoris/testsite.git"
+        "type": "git",
+        "url": "git://github.com/michieljoris/testsite.git"
     },
     "scripts": {
-	"start": "node ./server/server.js"
+        "start": "node ./server/server.js"
     },
     "dependencies": {
         "bb-server": "0.3.5",
         "html-builder": "0.1.4",
         "nodemailer": "0.5.x",
         "dbox": "0.6.x",
-        "colors": "*"
-	 
+        "colors": "*",
+	"dougs_vow"
     },
     "bugs": {
-	"url": "https://github.com/michieljoris/testsite/issues"
+        "url": "https://github.com/michieljoris/testsite/issues"
     },
     "analyze": false,
     "preferGlobal": "true",

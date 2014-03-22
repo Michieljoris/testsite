@@ -3,11 +3,11 @@
 /*jshint maxparams:7 maxcomplexity:7 maxlen:150 devel:true newcap:false*/ 
 
 function initPersona($scope, $http) {
-    var currentUser = cookie.get('persona');
-    if (currentUser) $scope.signedIn = currentUser;
+    // var currentUser = cookie.get('persona');
+    // if (currentUser) $scope.signedIn = currentUser;
  
     navigator.id.watch({
-        loggedInUser: currentUser,
+        // loggedInUser: currentUser,
         onlogin: function(assertion) {
             
             // A user has logged in! Here you need to:
@@ -16,11 +16,11 @@ function initPersona($scope, $http) {
             console.log('posting /signin');
             $http({ 
                 method: 'POST',
-                url: '/signin', // This is a URL on your website.
+                url: '/__api/signin', // This is a URL on your website.
                 data: {assertion: assertion} })
                 .success(function(data, status, headers, config) {
                     $scope.signedIn = data.email;
-                    // $scope.$apply();
+                    // $scope.$apply(;
                     cookie.set('persona', data.email);
                     console.log('Posted signin. It was a success', data);
                 })
@@ -28,7 +28,7 @@ function initPersona($scope, $http) {
                     cookie.remove('persona');
                     navigator.id.logout();
                     console.log('Posted signin. Failure', data, status);
-                    alert("Sign in failure: " + data.reason);
+                    alert("Sign in failure: " + (data.reason || status));
                 });
         },
         onlogout: function() {
@@ -39,7 +39,7 @@ function initPersona($scope, $http) {
             console.log('posting /signout');
             $http({
                 method: 'POST',
-                url: '/signout'})
+                url: '/__api/signout'})
                 .success(function(data, status, headers, config) {
                     cookie.remove('persona');
                     $scope.signedIn = false;
@@ -49,7 +49,7 @@ function initPersona($scope, $http) {
                     cookie.remove('persona');
                     navigator.id.logout();
                     $scope.signedIn = false;
-                    alert("Sign out failure: " + data.reason);
+                    alert("Sign out failure: " + (data.reason || status));
                 });
 
         }

@@ -1,5 +1,3 @@
-
-<!--html/basicPage.html-->
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" xmlns:ng="http://angularjs.org" lang="en"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" xmlns:ng="http://angularjs.org" lang="en"> <![endif]-->
@@ -7,9 +5,9 @@
 <!--[if gt IE 8]><!--> 
 <html class="no-js" xmlns:ng="http://angularjs.org" lang="en">
   <!--<![endif]-->
-  <head id="head"><title>Test Site</title><meta charset='utf-8'><meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'><meta content='This is the description of the test site' name='description'><meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <head id="head"><title>Test Site</title><meta charset='utf-8'/><meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'/><meta content='This is the description of the test site' name='description'/><meta name='viewport' content='width=device-width, initial-scale=1.0'/>
 
-<!--html/ieshim.html-->
+<!--partial:html/ieshim.html-->
 <!--[if lte IE 8]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <script>
@@ -23,57 +21,7 @@
     <script src="js/angular-ui-ieshiv.js"></script>
     <![endif]-->						    
 <script src="http://localhost:9090/skewer"></script>
-<link rel="stylesheet" type="text/css" href="css/h5bp.css"><link rel="stylesheet" type="text/css" href="css/../bootstrap3/css/bootstrap.css"><link rel="stylesheet" type="text/css" href="css/persona-buttons.css"><link rel="stylesheet" type="text/css" href="css/main.css">
-</head>
-  <body id="ng:app" ng:app="myApp">
-<!--html/body.html-->
-<!--[if lt IE 7]>
-<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-<![endif]-->
-
-
-   <div class="container" ng-controller="mainCntl">
-
-
-     <h3>Hello from the body</h3> {{test}}
-
-     <div ng-show="mode=='edit'">
-       <a ng-hide="signedIn" href="#" class="persona-button blue" ng-click="signin($event)"><span>Sign in</span></a>
-       <a ng-show="signedIn" href="#" class="persona-button blue" ng-click="signout($event)"><span>Sign out</span></a>
-     </div>
-     Signed in user: {{signedIn}}
-
-     <p></p>
-
-     <button class="btn btn-primary"  type="button" ng-click="saveEditable()">Save editable</button>
-     <button class="btn btn-primary"  type="button" ng-click="undoEditable()">Undo editable</button>
-     <button class="btn btn-primary"  type="button" ng-click="printEditable()">Print editable</button>
-     <button class="btn btn-primary"  type="button" ng-click="toggleEditable()">Toggle editable</button>
-     Editable? {{contentEditable}}
-     <div id="test--" contenteditable="{{contentEditable}}">
-<!--editable/test.html-->
-<h1>Inline Editing in Aasdfasdfasdfasdfasction!Balbal</h1>
-
-<p>The div element that contains this text is now editable.And some more text</p>
-</div>
-
-     <div id="test2--" contenteditable="{{contentEditable}}">
-       And this is div two.
-     </div>
-     <p></p>
-
-     <div class="well">
-       <a class=""  href="/">Home</a>
-       <a class=""  href="/#!/page1">Page 1</a>
-       <a class=""  href="/#!/page2">Page 2</a>
-
-       <div class="well ng-view" ></div>
-
-     </div>
-   </div>
-  <!-- text  -->
-<script type="text/javascript" src="thirdpartyjs/jquery-1.9.1.min.js"></script><script type="text/javascript" src="thirdpartyjs/noconsole.js"></script><script type="text/javascript" src="thirdpartyjs/../bootstrap3/js/bootstrap.js"></script><script type="text/javascript" src="thirdpartyjs/angular.min.js"></script><script type="text/javascript" src="thirdpartyjs/modernizr.js"></script><script type="text/javascript" src="thirdpartyjs/../ckeditor/ckeditor.js"></script><script type="text/javascript" src="thirdpartyjs/persona_include.js"></script>
-<script type="text/javascript" src="js/main.js"></script><script type="text/javascript" src="js/router.js"></script><script type="text/javascript" src="js/cookie.js"></script><script type="text/javascript" src="js/persona.js"></script>
-</body>
+<script src="https://login.persona.org/include.js"></script></head>
+  <body id="ng:app" ng:app="myApp">  </body>
 </html>	
 	 
