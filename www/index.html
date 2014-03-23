@@ -21,7 +21,63 @@
     <script src="js/angular-ui-ieshiv.js"></script>
     <![endif]-->						    
 <script src="http://localhost:9090/skewer"></script>
+<link rel="stylesheet" type="text/css" href="css/h5bp.css"><link rel="stylesheet" type="text/css" href="bootstrap3/css/bootstrap.css"><link rel="stylesheet" type="text/css" href="css/persona-buttons.css"><link rel="stylesheet" type="text/css" href="css/main.css">
 <script src="https://login.persona.org/include.js"></script></head>
-  <body id="ng:app" ng:app="myApp">  </body>
+  <body id="ng:app" ng:app="myApp">
+<!--partial:html/body.html-->
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+
+
+   <div class="container" ng-controller="mainCntl">
+
+<a href="https://dl.dropboxusercontent.com/u/14708796/couchdb.pdf">test dropbox pdf </a>
+     <h3>Hello from the body</h3> {{test}}
+
+     <div ng-show="mode=='edit'">
+       <a ng-hide="signedIn" href="#" class="persona-button blue" ng-click="signin($event)"><span>Sign in</span></a>
+       <a ng-show="signedIn" href="#" class="persona-button blue" ng-click="signout($event)"><span>Sign out</span></a>
+     </div>
+     Signed in user: {{signedIn}}
+
+     <p></p>
+
+     <button class="btn btn-primary"  type="button" ng-click="saveEditable()">Save editable</button>
+     <button class="btn btn-primary"  type="button" ng-click="undoEditable()">Undo editable</button>
+     <button class="btn btn-primary"  type="button" ng-click="printEditable()">Print editable</button>
+     <button class="btn btn-primary"  type="button" ng-click="toggleEditable()">Toggle editable</button>
+     Editable? {{contentEditable}}
+     <div id="test--" contenteditable="{{contentEditable}}">
+<!--partial:editable/test.html-->
+<!--partial:editable/test.html--><!--partial:editable/test.html--><!--partial:editable/test.html--><!--partial:editable/test.html--><!--partial:editable/test.html--><!--partial:editable/test.html-->
+<h1>Working??dsdfsfdsaf</h1>
+
+<p>TOk then</p>
+
+<p>&nbsp;</p>
+</div>
+
+     <div id="test2--" contenteditable="{{contentEditable}}">
+       And this is div two.
+     </div>
+     <p></p>
+
+     <div class="well">
+       <a class=""  href="/">Home</a>
+       <a class=""  href="/#!/page1">Page 1</a>
+       <a class=""  href="/#!/page2">Page 2</a>
+
+       <div class="well ng-view" ></div>
+       
+
+     </div>
+     <a  href="https://www.dropbox.com/s/g29firv1rb7kdhk/E-TICKET%20VAN%20OOSTEN%2C%20BIJOU.pdf">link
+     to dropbox file</a>
+   </div>
+  <!-- text  -->
+<script type="text/javascript" src="thirdpartyjs/jquery-1.9.1.min.js"></script><script type="text/javascript" src="thirdpartyjs/noconsole.js"></script><script type="text/javascript" src="bootstrap3/js/bootstrap.js"></script><script type="text/javascript" src="thirdpartyjs/angular.min.js"></script><script type="text/javascript" src="thirdpartyjs/modernizr.js"></script><script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="js/main.js"></script><script type="text/javascript" src="js/router.js"></script><script type="text/javascript" src="js/cookie.js"></script><script type="text/javascript" src="js/persona.js"></script>
+</body>
 </html>	
 	 

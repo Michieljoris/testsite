@@ -108,17 +108,17 @@ var options = {
             // 'markdown',
             // 'denodify',
             // 'regenerators'
-            'inject'
+            // 'inject'
         ], 
         // transpile: [],  //TODO add all current supported file types
         
         // minify: [],
         // minify: ['js', 'css' ] //js, css, html
         // ,zip: /text|javascript|json/ //regex on the mimetype
-        verbose: true,
-        inject: {
-            refresh: ['index.html']
-        }
+        verbose: true
+        // ,inject: {
+        //     'index.html': ['reload']
+        // }
     }
     
     //if spa is true all requests that don't seem to be requests for a file with
@@ -167,23 +167,24 @@ var options = {
         // "/dropbox_connect": dropbox_connect
     }
     
-    
+    //start a websocket server and register handlers
+    //One built-in handler is reload, include it as a string, otherwise list a home-made module
+    //For an example of a handler see lib/reload.js
+    // ,wsHandlers:  [ 'reload' ]
+    ,verbose: true
+    //Convenience setting. When true inject will be added to the transpilers,
+    //set to inject the reload script into index.html and the reload handler
+    //added to wsHandlers with the result that the server will respond to
+    //"reload" messages and send a message to connected browsers to reload
+    ,reload: true
     //If method and path match the functin will be called with [req, res].
-    // ,postHandlers: {
-    //     "/testPost" : testPost
-    // }
-    //If method and path match the function will be called with [req, res].
-    // ,getHandlers: {
-    //     "/testget" : testGet,
-    // }
-    //needs testing:
+    
     //start a https server
     // ,https: {
     //     privatekey: 'certs/yourdomain.com.key',
     //     certificate: 'certs/yourdomain.com.crt'
     // }
-    //start a websocket server
-    ,websocket: true
+    
     //attaches session data to requests
     ,sessions: {
         expires:30 
@@ -194,8 +195,6 @@ var options = {
         //     //options for mysql, memory doesn't need any
         // }
     },
-    //inject a script into html files
-    // }
     //not implemented yet:
     //server api path:
     api: '__api'

@@ -31,9 +31,8 @@ var exports = {
         ,js: 'js'
     }
     
-    
     //send msg to url when finished rendering
-    ,refresh: {
+    ,reload: {
         // enable: develop_mode,
         enable: true,
         url: "ws://localhost:8080",
@@ -161,6 +160,7 @@ var exports = {
               }
             }
             
+            
             ,{ id: 'body',
                src: 'html/body.html' 
                ,tagIdPostfix: '--' //can be overridden per template
@@ -184,19 +184,20 @@ var exports = {
                 //concatenated before inserted at the tag id element
                 ,mapping: {
                     head: ['title', 'meta', 'html/ieshim',  'skewer', 'headJsBlock',
-                           // 'myLinkBlock'
+                           'myLinkBlock'
                            ,'persona'
                            // ,'_linkBlock'
                            // ,'somescript'
                           ],
                    "ng:app": [
-                       // 'body',
-                       //        'vendorJsBlock', 'myJsBlock'
+                       'body',
+                              'vendorJsBlock', 'myJsBlock'
                               // 'recaptcha',
                                // 'html/google_analytics.html'
                              ]
                 }
             }
+            
             
         ] 
     }
