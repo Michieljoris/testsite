@@ -16,6 +16,8 @@ var server = require('bb-server')
 //TODO: option to not send mimeless files found in allowable directories.
 //TODO: send certain files directly, bypassing cache with certain
 //cache control headings, so we can send big files etc
+
+var develop_mode = process.env.DEVELOP; 
 var options = { 
     //Serve all files relative to this root. Defaults to './'.
     root:'./www' 
@@ -119,6 +121,7 @@ var options = {
         // ,inject: {
         //     'index.html': ['reload']
         // }
+        ,scripts: {}
     }
     
     //if spa is true all requests that don't seem to be requests for a file with
@@ -140,6 +143,7 @@ var options = {
     //'phantomjs'. If falsy, or the phantomjs executable is not found, the
     //seoServer will be called upon.
     ,phantomPath: true
+    
     //if phantomPath is not valid the server will call on the external
     //seoServer. Assign an url. Defaults to false. 
     ,seoServer: false
@@ -152,6 +156,7 @@ var options = {
     //       "target": "https://somedb.iriscouch.com"}
     // ]
     
+    //If method and path match the functin will be called with [req, res].
     ,postHandlers: {
         
         "/save": saveFile
@@ -168,17 +173,21 @@ var options = {
     }
     
     //start a websocket server and register handlers
-    //One built-in handler is reload, include it as a string, otherwise list a home-made module
+    //One built-in handler is reload, include the "reload" as a string,
+    //otherwise add a function
     //For an example of a handler see lib/reload.js
     // ,wsHandlers:  [ 'reload' ]
+    
+    //level of output
     ,verbose: true
+    
     //Convenience setting. When true inject will be added to the transpilers,
     //set to inject the reload script into index.html and the reload handler
     //added to wsHandlers with the result that the server will respond to
     //"reload" messages and send a message to connected browsers to reload
     ,reload: true
-    //If method and path match the functin will be called with [req, res].
-    
+    //host for the websocket to connect to from the client
+    ,host: 'localhost'
     //start a https server
     // ,https: {
     //     privatekey: 'certs/yourdomain.com.key',
@@ -202,6 +211,7 @@ var options = {
     ,persona: {
         authorized: ['mail@axion5.net', 'michieljoris@gmail.com']
         ,verbose: true 
+        ,audience: develop_mode ? 'localhost': 'www.example.com'
     } 
     //
     //enable server api:

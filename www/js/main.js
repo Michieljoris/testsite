@@ -42,7 +42,7 @@ var mainCntl = function ($scope, $http) {
     
     
     
-    $scope.contentEditable = false;
+    $scope.contentEditable = true;
     $scope.mode = 'edit';
     var partials;
     

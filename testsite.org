@@ -1,4 +1,4 @@
-* sessions:
+* persona:
 Add this script or download and include -that-
 <script src="https://login.persona.org/include.js"></script>
 Include persona-buttons.css
@@ -43,7 +43,7 @@ Add this to the post handlers
         ,"/signout": signout
 After successfull signin $scope.signedIn is the user's email address	
 	
-	
+
 * incorporate in the build process:
   
 ** gzip the resources
