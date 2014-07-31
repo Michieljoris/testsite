@@ -73,7 +73,8 @@ use cdn versions of thirdparty where possible
 Add mozilla sessions 
 
 inline x-editable, http://vitalets.github.io/x-editable/demo.html?c=inline
-ckeditor inline http://ckeditor.com/demo#inline
+ckeditor inline 
+http://ckeditor.com/demo#inline
 http://mattduvall.com/grande.js/
 http://sofish.github.io/pen/
 http://hallojs.org/
